@@ -1,5 +1,7 @@
 # autocorrectoR
 
+[Versión en español](README.es.md)
+
 An R package for automatically grading student coding exercises. Each student
 submits one R file per exercise; the professor provides matching test files. The
 package sources both into an isolated environment, runs the tests, and returns a
@@ -10,6 +12,51 @@ tidy data frame of results.
 ```r
 # install.packages("pak")
 pak::pak("your-github-username/autocorrectoR")
+```
+
+## Minimal end-to-end example
+
+```r
+library(autocorrectoR)
+
+# --- 1. Create a fake submission folder ---
+dir.create("submissions/garcia", recursive = TRUE)
+dir.create("submissions/lopez",  recursive = TRUE)
+dir.create("tests")
+
+writeLines(
+  'ceros_cuadratica <- function(a, b, c) {
+     d <- b^2 - 4*a*c
+     c((-b - sqrt(d)) / (2*a), (-b + sqrt(d)) / (2*a))
+   }',
+  "submissions/garcia/ejercicio1.R"
+)
+
+writeLines(
+  'ceros_cuadratica <- function(a, b, c) c(0, 0)',  # wrong
+  "submissions/lopez/ejercicio1.R"
+)
+
+writeLines(
+  'test_ejercicio1_raices <- function() {
+     all(ceros_cuadratica(1, 0, -1) == c(-1, 1))
+   }
+   test_ejercicio1_tipo <- function() {
+     is.numeric(ceros_cuadratica(1, 0, -1))
+   }',
+  "tests/test_ejercicio1.R"
+)
+
+# --- 2. Grade ---
+results <- grade_submissions("submissions/", test_dir = "tests/")
+#   student    ejercicio1
+# 1 Garcia          TRUE
+# 2 Lopez          FALSE
+
+# --- 3. Summarise and export ---
+grade_report(results)
+export_to_html(results, "report.html")
+export_to_csv(results,  "grades.csv")
 ```
 
 ## How it works
@@ -36,7 +83,7 @@ Each test file contains functions named `test_<exercise>_<case>` that return
 ```r
 # tests/test_ejercicio1.R
 test_ejercicio1_positivos <- function() {
-  ceros_cuadratica(1, 0, -1) == c(-1, 1)
+  all(ceros_cuadratica(1, 0, -1) == c(-1, 1))
 }
 
 test_ejercicio1_tipo <- function() {
@@ -54,14 +101,9 @@ library(autocorrectoR)
 
 # Grade a full batch (directory or .zip)
 results <- grade_submissions("submissions/", test_dir = "tests/")
-#   student    ejercicio1 ejercicio2
-# 1 Garcia          TRUE       TRUE
-# 2 Lopez          FALSE       TRUE
 
 # Grade a single file during development
 grade_exercise("submissions/garcia_juan/ejercicio1.R", test_dir = "tests/")
-# test_ejercicio1_positivos test_ejercicio1_tipo
-#                      TRUE                 TRUE
 
 # Console summary
 grade_report(results)
