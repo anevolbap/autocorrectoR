@@ -24,3 +24,9 @@ test_that("grade_exercise warns and returns empty when no test file found", {
   expect_warning(result <- grade_exercise(file, test_dir), "No test file found")
   expect_length(result, 0)
 })
+
+test_that("grade_exercise times out and returns FALSE", {
+  file <- test_path("fixtures/student_timeout/ejercicio1.R")
+  result <- grade_exercise(file, test_dir, timeout = 1)
+  expect_false(result[["test_ejercicio1_suma"]])
+})

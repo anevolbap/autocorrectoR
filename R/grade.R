@@ -6,11 +6,13 @@
 #'
 #' @param file Path to the student's R file (e.g. `"ejercicio1.R"`).
 #' @param test_dir Directory that contains the test files.
+#' @param timeout Maximum seconds allowed per test function. Tests that exceed
+#'   this limit are recorded as `FALSE`. Default `Inf` (no limit).
 #' @return Named logical vector with one element per test function.
 #'   Returns `c(source_error = FALSE)` if the student file cannot be sourced.
 #'   Returns `logical(0)` with a warning if no matching test file is found.
 #' @export
-grade_exercise <- function(file, test_dir) {
+grade_exercise <- function(file, test_dir, timeout = Inf) {
   env <- new.env(parent = baseenv())
 
   test_file <- find_test_file(file, test_dir)
@@ -35,7 +37,7 @@ grade_exercise <- function(file, test_dir) {
   test_fns <- ls(envir = env, pattern = paste0("^test_", stem, "_"))
 
   sapply(test_fns, function(fn) {
-    tryCatch(get(fn, envir = env)(), error = function(e) FALSE)
+    run_with_timeout(get(fn, envir = env), timeout)
   })
 }
 
@@ -51,10 +53,12 @@ grade_exercise <- function(file, test_dir) {
 #'
 #' @param submissions_path Path to a directory or `.zip` archive of submissions.
 #' @param test_dir Directory that contains the test files.
+#' @param timeout Maximum seconds allowed per test function, passed to
+#'   [grade_exercise()]. Default `Inf` (no limit).
 #' @return Data frame with one row per student (column `student`) and one
 #'   logical column per exercise (`TRUE` = all tests passed).
 #' @export
-grade_submissions <- function(submissions_path, test_dir) {
+grade_submissions <- function(submissions_path, test_dir, timeout = Inf) {
   dir <- extract_if_zip(submissions_path)
   students <- list.files(dir)
 
@@ -68,7 +72,7 @@ grade_submissions <- function(submissions_path, test_dir) {
       full.names = TRUE
     )
 
-    grades <- lapply(exercise_files, grade_exercise, test_dir = test_dir)
+    grades <- lapply(exercise_files, grade_exercise, test_dir = test_dir, timeout = timeout)
     passed <- sapply(grades, function(r) length(r) > 0 && all(r))
     names(passed) <- tools::file_path_sans_ext(basename(exercise_files))
 
@@ -93,6 +97,12 @@ extract_if_zip <- function(path) {
     return(dest)
   }
   path
+}
+
+run_with_timeout <- function(fn, timeout) {
+  setTimeLimit(elapsed = timeout, transient = FALSE)
+  on.exit(setTimeLimit(elapsed = Inf, transient = FALSE))
+  tryCatch(fn(), error = function(e) FALSE)
 }
 
 # Convention: folder names like "apellido_nombre_..." or just "apellido"
