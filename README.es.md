@@ -166,19 +166,7 @@ system.file("examples", package = "autocorrectoR")
 
 ## Contribuciones
 
-El feedback de docentes que usan el paquete en sus cursos es el más valioso
-de todos — si algo no se adapta a tu flujo de trabajo, eso es un problema que
-vale la pena reportar.
-
-- **Errores y sugerencias de funcionalidades:** abrí un issue en GitHub
-- **Preguntas o ideas:** los issues también son el lugar indicado; no hay
-  pregunta demasiado pequeña
-- **Pull requests:** son bienvenidos — abrí un issue primero para acordar el
-  enfoque antes de invertir tiempo escribiendo código
-
-Si usás autocorrectoR en un curso y tenés archivos de tests que estás dispuesto
-a compartir, considerá contribuirlos a `inst/examples/` como plantillas para
-otros docentes.
+El feedback es bienvenido — abrí un issue en GitHub.
 
 ## Convención para los nombres de carpetas
 
