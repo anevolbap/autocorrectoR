@@ -79,7 +79,7 @@ grade_submissions <- function(submissions_path, test_dir, timeout = Inf) {
     as.data.frame(c(list(student = name), as.list(passed)))
   })
 
-  dplyr::bind_rows(rows)
+  do.call(rbind, rows)
 }
 
 # ---------- internal helpers ----------
