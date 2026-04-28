@@ -11,8 +11,8 @@ los tests y devuelve un data frame con los resultados.
 ## Instalación
 
 ```r
-# install.packages("pak")
-pak::pak("tu-usuario-github/autocorrectoR")
+# install.packages("remotes")
+remotes::install_github("tu-usuario-github/autocorrectoR")
 ```
 
 ## Ejemplo mínimo de principio a fin

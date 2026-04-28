@@ -11,8 +11,8 @@ tidy data frame of results.
 ## Installation
 
 ```r
-# install.packages("pak")
-pak::pak("your-github-username/autocorrectoR")
+# install.packages("remotes")
+remotes::install_github("your-github-username/autocorrectoR")
 ```
 
 ## Minimal end-to-end example
