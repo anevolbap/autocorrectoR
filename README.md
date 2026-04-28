@@ -161,7 +161,7 @@ plot_report(example_results(), ask = FALSE)
 dev.off()
 ```
 
-<!-- screenshot: man/figures/plots-preview.png -->
+![Plots preview](man/figures/plots-preview.png)
 
 ## Timeout
 

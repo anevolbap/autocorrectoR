@@ -162,7 +162,7 @@ plot_report(example_results(), ask = FALSE)
 dev.off()
 ```
 
-<!-- screenshot: man/figures/plots-preview.png -->
+![Vista previa de los gráficos](man/figures/plots-preview.png)
 
 ## Tiempo límite por test
 
