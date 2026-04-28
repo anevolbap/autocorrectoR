@@ -1,6 +1,7 @@
 # autocorrectoR
 
 [Versión en español](README.es.md)
+[![R-CMD-check](https://github.com/<your-github-username>/autocorrectoR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/<your-github-username>/autocorrectoR/actions/workflows/R-CMD-check.yaml)
 
 An R package for automatically grading student coding exercises. Each student
 submits one R file per exercise; the professor provides matching test files. The
@@ -57,6 +58,14 @@ results <- grade_submissions("submissions/", test_dir = "tests/")
 grade_report(results)
 export_to_html(results, "report.html")
 export_to_csv(results,  "grades.csv")
+```
+
+A built-in sample dataset is available to try the package immediately:
+
+```r
+results <- example_results()  # 8 fake students, 5 exercises
+grade_report(results)
+plot_report(results)
 ```
 
 ## How it works
@@ -143,6 +152,17 @@ plot_report(results, ask = FALSE)
 dev.off()
 ```
 
+To generate the preview image below, run once after installing the package:
+
+```r
+png("man/figures/plots-preview.png", width = 1200, height = 450, res = 150)
+par(mfrow = c(1, 3))
+plot_report(example_results(), ask = FALSE)
+dev.off()
+```
+
+<!-- screenshot: man/figures/plots-preview.png -->
+
 ## Timeout
 
 To prevent infinite loops in student code from hanging the grader, set a
@@ -163,6 +183,22 @@ package:
 ```r
 system.file("examples", package = "autocorrectoR")
 ```
+
+## Alternatives
+
+Other R packages that tackle similar problems, each with a different scope:
+
+- **[gradethis](https://pkgs.rstudio.com/gradethis/)** — checks student code
+  inside interactive [learnr](https://rstudio.github.io/learnr/) tutorials.
+  Best for self-paced practice; requires a Shiny server.
+- **[exams](https://www.r-exams.org/)** — generates randomised exam questions
+  and exports to Moodle, Canvas, PDF, and more. Very powerful for large courses
+  that run repeatedly.
+- **[RTutor](https://github.com/skranz/RTutor)** — creates Shiny-based problem
+  sets with automatic solution checking and progress tracking.
+
+autocorrectoR is the lightest option: no server, no infrastructure, plain `.R`
+file submissions, zero hard dependencies.
 
 ## Contributing
 

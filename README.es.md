@@ -1,6 +1,7 @@
 # autocorrectoR
 
 [English version](README.md)
+[![R-CMD-check](https://github.com/<your-github-username>/autocorrectoR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/<your-github-username>/autocorrectoR/actions/workflows/R-CMD-check.yaml)
 
 Paquete de R para corregir automáticamente ejercicios de programación. Cada
 estudiante entrega un archivo `.R` por ejercicio; el docente provee archivos de
@@ -57,6 +58,15 @@ resultados <- grade_submissions("entregas/", test_dir = "tests/")
 grade_report(resultados)
 export_to_html(resultados, "informe.html")
 export_to_csv(resultados,  "notas.csv")
+```
+
+El paquete incluye un dataset de ejemplo para probar las funciones sin necesidad
+de armar una entrega real:
+
+```r
+resultados <- example_results()  # 8 estudiantes ficticios, 5 ejercicios
+grade_report(resultados)
+plot_report(resultados)
 ```
 
 ## Cómo funciona
@@ -143,6 +153,17 @@ plot_report(resultados, ask = FALSE)
 dev.off()
 ```
 
+Para generar la imagen de vista previa, ejecutar una vez con el paquete instalado:
+
+```r
+png("man/figures/plots-preview.png", width = 1200, height = 450, res = 150)
+par(mfrow = c(1, 3))
+plot_report(example_results(), ask = FALSE)
+dev.off()
+```
+
+<!-- screenshot: man/figures/plots-preview.png -->
+
 ## Tiempo límite por test
 
 Para evitar que bucles infinitos en el código de los estudiantes bloqueen el
@@ -163,6 +184,24 @@ transformación de data frames):
 ```r
 system.file("examples", package = "autocorrectoR")
 ```
+
+## Alternativas
+
+Otros paquetes de R que abordan problemas similares, cada uno con un alcance
+distinto:
+
+- **[gradethis](https://pkgs.rstudio.com/gradethis/)** — verifica código dentro
+  de tutoriales interactivos de [learnr](https://rstudio.github.io/learnr/).
+  Ideal para práctica guiada; requiere un servidor Shiny.
+- **[exams](https://www.r-exams.org/)** — genera preguntas de examen
+  aleatorizadas y exporta a Moodle, Canvas, PDF, entre otros. Muy poderoso para
+  cursos grandes que se repiten año a año.
+- **[RTutor](https://github.com/skranz/RTutor)** — crea guías de problemas
+  interactivas basadas en Shiny con corrección automática y seguimiento del
+  progreso.
+
+autocorrectoR es la opción más liviana: sin servidor, sin infraestructura,
+entregas en archivos `.R` simples, sin dependencias obligatorias.
 
 ## Contribuciones
 
