@@ -128,6 +128,21 @@ googlesheets4::gs4_auth()
 export_to_sheets(resultados, "https://docs.google.com/spreadsheets/d/...")
 ```
 
+## Gráficos
+
+`plot_report()` genera tres gráficos en secuencia: puntajes de los estudiantes
+ordenados, tasa de aprobación por ejercicio, y un mapa de calor de resultados.
+
+```r
+# Interactivo — pausa entre gráficos
+plot_report(resultados)
+
+# Guardar los tres gráficos en un PDF
+pdf("informe.pdf", width = 8, height = 5)
+plot_report(resultados, ask = FALSE)
+dev.off()
+```
+
 ## Tiempo límite por test
 
 Para evitar que bucles infinitos en el código de los estudiantes bloqueen el

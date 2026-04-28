@@ -128,6 +128,21 @@ googlesheets4::gs4_auth()
 export_to_sheets(results, "https://docs.google.com/spreadsheets/d/...")
 ```
 
+## Plots
+
+`plot_report()` produces three sequential plots: student scores ranked,
+pass rate per exercise, and a pass/fail heatmap.
+
+```r
+# Interactive — pauses between plots
+plot_report(results)
+
+# Save all three plots to a PDF
+pdf("report.pdf", width = 8, height = 5)
+plot_report(results, ask = FALSE)
+dev.off()
+```
+
 ## Timeout
 
 To prevent infinite loops in student code from hanging the grader, set a
