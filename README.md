@@ -164,6 +164,19 @@ package:
 system.file("examples", package = "autocorrectoR")
 ```
 
+## Contributing
+
+Feedback from professors actually using this in a course is the most valuable
+kind — if something doesn't fit your workflow, that's a bug worth reporting.
+
+- **Bug reports and feature requests:** open an issue on GitHub
+- **Questions or ideas:** issues are also the right place; no question is too small
+- **Pull requests:** welcome — please open an issue first so we can agree on
+  the approach before you invest time writing code
+
+If you use autocorrectoR in a course and have test files you're happy to share,
+consider contributing them to `inst/examples/` as templates for others.
+
 ## Submission folder naming
 
 Student folders are expected to start with the student's surname, optionally
