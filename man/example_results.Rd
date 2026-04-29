@@ -1,0 +1,20 @@
+\name{example_results}
+\alias{example_results}
+\title{Sample grading results}
+\usage{
+example_results()
+}
+\value{
+Data frame with columns \code{student}, \code{ejercicio1}, ...,
+\code{ejercicio5}.
+}
+\description{
+A small fake data frame with 8 students and 5 exercises, useful for
+trying out \code{\link{grade_report}}, \code{\link{plot_report}}, and the
+export functions without needing real student submissions.
+}
+\examples{
+results <- example_results()
+grade_report(results)
+plot_report(results, ask = FALSE)
+}

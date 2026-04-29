@@ -1,0 +1,22 @@
+\name{export_to_csv}
+\alias{export_to_csv}
+\title{Export grading results to a CSV file}
+\usage{
+export_to_csv(results, path)
+}
+\arguments{
+\item{results}{Data frame returned by \code{\link{grade_submissions}}.}
+
+\item{path}{Output file path (e.g. \code{"grades.csv"}).}
+}
+\value{
+\code{results}, invisibly.
+}
+\description{
+Export grading results to a CSV file.
+}
+\examples{
+\dontrun{
+export_to_csv(results, "grades.csv")
+}
+}

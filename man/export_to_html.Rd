@@ -1,0 +1,24 @@
+\name{export_to_html}
+\alias{export_to_html}
+\title{Export grading results to an HTML report}
+\usage{
+export_to_html(results, path)
+}
+\arguments{
+\item{results}{Data frame returned by \code{\link{grade_submissions}}.}
+
+\item{path}{Output file path (e.g. \code{"report.html"}).}
+}
+\value{
+\code{results}, invisibly.
+}
+\description{
+Produces a self-contained HTML file with a colour-coded table
+(green = pass, red = fail), a per-student score column, and a pass-rate
+summary row. No extra packages required.
+}
+\examples{
+\dontrun{
+export_to_html(results, "report.html")
+}
+}
