@@ -1,4 +1,4 @@
-# autocorrectoR
+# corrector
 
 [English version](README.en.md)
 
@@ -11,13 +11,13 @@ devuelve un data frame con los resultados.
 
 ```r
 # install.packages("remotes")
-remotes::install_github("tu-usuario-github/autocorrectoR")
+remotes::install_github("tu-usuario-github/corrector")
 ```
 
 ## Ejemplo de principio a fin
 
 ```r
-library(autocorrectoR)
+library(corrector)
 
 # --- 1. Crear carpetas de entregas de ejemplo ---
 dir.create("entregas/garcia", recursive = TRUE)
@@ -106,7 +106,7 @@ para cada ejercicio, así las entregas no se interfieren entre sí.
 ## Uso
 
 ```r
-library(autocorrectoR)
+library(corrector)
 
 # Corregir un lote completo (carpeta o .zip)
 resultados <- grade_submissions("entregas/", test_dir = "tests/")
@@ -172,7 +172,7 @@ cuadrática, búsqueda de palabras, ordenamiento, simulación y transformación 
 data frames.
 
 ```r
-system.file("examples", package = "autocorrectoR")
+system.file("examples", package = "corrector")
 ```
 
 ## Alternativas
@@ -189,7 +189,7 @@ distinto:
 - **[RTutor](https://github.com/skranz/RTutor)**: crea guías de problemas
   interactivas con corrección automática y seguimiento del progreso.
 
-autocorrectoR es la opción más liviana: sin servidor, sin infraestructura,
+corrector es la opción más liviana: sin servidor, sin infraestructura,
 entregas en archivos `.R` comunes y sin dependencias obligatorias.
 
 ## Contribuciones

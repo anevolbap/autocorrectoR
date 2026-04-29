@@ -1,4 +1,4 @@
-Package: autocorrectoR
+Package: corrector
 Title: Automatic Grading of R Coding Exercises
 Version: 0.1.0
 Authors@R: person("Pablo", "Vena", email = "vena.pablo@gmail.com",

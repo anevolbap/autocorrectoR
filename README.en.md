@@ -1,4 +1,4 @@
-# autocorrectoR
+# corrector
 
 [Versión en español](README.md)
 
@@ -11,13 +11,13 @@ tidy data frame of results.
 
 ```r
 # install.packages("remotes")
-remotes::install_github("your-github-username/autocorrectoR")
+remotes::install_github("your-github-username/corrector")
 ```
 
 ## Minimal end-to-end example
 
 ```r
-library(autocorrectoR)
+library(corrector)
 
 # --- 1. Create a fake submission folder ---
 dir.create("submissions/garcia", recursive = TRUE)
@@ -105,7 +105,7 @@ each exercise, so submissions cannot interfere with each other.
 ## Usage
 
 ```r
-library(autocorrectoR)
+library(corrector)
 
 # Grade a full batch (directory or .zip)
 results <- grade_submissions("submissions/", test_dir = "tests/")
@@ -153,7 +153,7 @@ Tests that exceed the limit are recorded as `FALSE`.
 ## Example test files
 
 ```r
-system.file("examples", package = "autocorrectoR")
+system.file("examples", package = "corrector")
 ```
 
 ## Alternatives
@@ -166,7 +166,7 @@ system.file("examples", package = "autocorrectoR")
 - **[RTutor](https://github.com/skranz/RTutor)**: Shiny-based interactive
   problem sets with automatic solution checking.
 
-autocorrectoR is the lightest option: no server, plain `.R` file submissions,
+corrector is the lightest option: no server, plain `.R` file submissions,
 zero hard dependencies.
 
 ## Contributing
