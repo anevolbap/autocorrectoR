@@ -11,7 +11,7 @@ devuelve un data frame con los resultados.
 
 ```r
 # install.packages("remotes")
-remotes::install_github("tu-usuario-github/corrector")
+remotes::install_github("anevolbap/corrector")
 ```
 
 ## Ejemplo de principio a fin

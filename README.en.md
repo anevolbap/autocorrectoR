@@ -11,7 +11,7 @@ tidy data frame of results.
 
 ```r
 # install.packages("remotes")
-remotes::install_github("your-github-username/corrector")
+remotes::install_github("anevolbap/corrector")
 ```
 
 ## Minimal end-to-end example
